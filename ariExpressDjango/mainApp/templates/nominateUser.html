@@ -1,0 +1,68 @@
+
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <title>Nominate User</title>
+  </head>
+  <body>
+
+    <h1>Nominate User - "{{ storename }}" Store</h1>
+    <br>
+    
+    <h2>Nominate a new staff member:</h2>
+
+    <form method="post" action="{% url 'mainApp:nominateUser' storename %}">
+      {% csrf_token %}
+      <select class="form-select" aria-label="Default select example" name="nominateSelect">
+        <option selected>Nominate a user:</option>
+        <option value="1">Owner</option>
+        <option value="2">Manager</option>
+      </select>
+      <div class="userSelect">
+        <input type="text" class="form-control" name="inputNominatedUsername" placeholder="Enter the user's username">
+        <input type="hidden" name="storename" value="{{ storename }}">
+        <br>
+      </div>
+      <button type="submit" class="btn btn-primary" name="nominateUser">Nominate</button>
+    </form>
+    <table class="table table-hover">
+      <thead>
+          <tr>
+              <th>Username</th>            
+              <th>Nominated by</th>
+              <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for id, nominee in nominees.items %}
+          <tr>
+              <td>{{ nominee.nominated_username }}</td>
+              <td>{{ nominee.nominated_by }}</td>
+              <td>{{ bid.offer }}</td>
+              <td>
+                <div class="d-flex justify-content-start">
+                  {% if user.username in nominee.usernames_left_to_approve %}
+                  <form method="post" action="{% url 'mainApp:nominateUser' storename %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="toBeNominated" value="{{ nominee.nominated_username }}">
+                    <button type="submit" class="btn btn-outline-dark" name="approveNomination">Approve</button>
+                  </form>
+                  <form method="post" action="{% url 'mainApp:nominateUser' storename %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="toBeNominated" value="{{ nominee.nominated_username }}">
+                    <button type="submit" class="btn btn-outline-dark" name="rejectNomination">Reject</button>
+                  </form>
+                  {% endif %}
+                </div>
+              </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+
+
+    </body>
+{% endblock %}

@@ -1,0 +1,51 @@
+[
+  {
+    "register": {"args": ["aaa", "asdf1233", "a@a.com"]}
+  },
+  {
+    "register": {"args": ["bbb", "asdf1233", "a@a.com"]}
+  },
+  {
+    "logIn": {"args": ["bbb", "asdf1233"]}
+  },
+  {
+    "createStore": {"args": ["bbb", "TESTSTORE"]}
+  },
+  {
+    "addNewProductToStore": {"args": ["bbb", "TESTSTORE", "janana", "50", "9", "fruit"]}
+  },
+  {
+    "logOut": {"args": ["bbb"]}
+  },
+  {
+    "logIn": {"args": ["aaa", "asdf1233"]}
+  },
+  {
+    "createStore": {"args": ["aaa", "store123"]}
+  },
+  {
+    "createStore": {"args": ["aaa", "456store"]}
+  },
+  {
+    "addNewProductToStore": {"args": ["aaa", "store123", "apple", "20", "3", "fruit"]}
+  },
+  {
+    "addNewProductToStore": {"args": ["aaa", "store123", "banana", "30", "8", "fruit"]}
+  },
+  {
+    "addNewProductToStore": {"args": ["aaa", "store123", "headphones", "10", "700", "electronics"]}
+  },
+  {
+    "addToBasket": {"args": ["aaa", "store123", "3", "1"]}
+  },
+  {
+    "addToBasket": {"args": ["aaa", "TESTSTORE", "1", "1"]}
+  },
+  {
+    "logOut": {"args": ["aaa"]}
+  }
+]
+
+
+
+        
